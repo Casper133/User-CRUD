@@ -17,58 +17,59 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class DefaultUserService implements UserService {
 
-    private final UserMapper userMapper;
-    private final UserRepository userRepository;
+  private final UserMapper userMapper;
+  private final UserRepository userRepository;
 
-    @Override
-    @Transactional
-    public UserResponseDto createUser(UserRequestDto userRequestDto) {
-        User user = userMapper.mapRequestDtoToUser(userRequestDto);
-        user = userRepository.save(user);
+  @Override
+  @Transactional
+  public UserResponseDto createUser(UserRequestDto userRequestDto) {
+    User user = userMapper.mapRequestDtoToUser(userRequestDto);
+    user = userRepository.save(user);
 
-        log.info("Creating new user with id {}", user.getId());
+    log.info("Creating new user with id {}", user.getId());
 
-        return userMapper.mapUserToResponseDto(user);
-    }
+    return userMapper.mapUserToResponseDto(user);
+  }
 
-    @Override
-    public UserResponseDto getUser(Long id) {
-        User user = getUserById(id);
+  @Override
+  public UserResponseDto getUser(Long id) {
+    User user = getUserById(id);
 
-        log.info("Getting user with id {}", id);
+    log.info("Getting user with id {}", id);
 
-        return userMapper.mapUserToResponseDto(user);
-    }
+    return userMapper.mapUserToResponseDto(user);
+  }
 
-    @Override
-    @Transactional
-    public UserResponseDto editUser(Long id, UserRequestDto userRequestDto) {
-        User user = getUserById(id);
+  @Override
+  @Transactional
+  public UserResponseDto editUser(Long id, UserRequestDto userRequestDto) {
+    User user = getUserById(id);
 
-        user.setEmail(userRequestDto.getEmail());
-        user.setUsername(userRequestDto.getUsername());
-        user.setPassword(userRequestDto.getPassword());
+    user.setEmail(userRequestDto.getEmail());
+    user.setUsername(userRequestDto.getUsername());
+    user.setPassword(userRequestDto.getPassword());
 
-        user = userRepository.save(user);
+    user = userRepository.save(user);
 
-        log.info("Editing user with id {}", id);
+    log.info("Editing user with id {}", id);
 
-        return userMapper.mapUserToResponseDto(user);
-    }
+    return userMapper.mapUserToResponseDto(user);
+  }
 
-    @Override
-    @Transactional
-    public void deleteUser(Long id) {
-        User user = getUserById(id);
+  @Override
+  @Transactional
+  public void deleteUser(Long id) {
+    User user = getUserById(id);
 
-        log.info("Deleting user with id {}", id);
+    log.info("Deleting user with id {}", id);
 
-        userRepository.delete(user);
-    }
+    userRepository.delete(user);
+  }
 
-    private User getUserById(Long id) {
-        return userRepository.findById(id)
-                             .orElseThrow(IllegalArgumentException::new);
-    }
+  private User getUserById(Long id) {
+    return userRepository
+        .findById(id)
+        .orElseThrow(IllegalArgumentException::new);
+  }
 
 }

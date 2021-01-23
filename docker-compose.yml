@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:13.1
+    container_name: postgres
+    restart: on-failure
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: user_crud
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

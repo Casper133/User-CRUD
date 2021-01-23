@@ -9,7 +9,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
         jdbc:
           lob:
             non_contextual_creation: true
@@ -24,8 +24,10 @@ logging:
     root: info
   file:
     name: ${LOGS_DIRECTORY:logs}/user-crud.log
-    max-history: 30
-    max-size: 10MB
   pattern:
     dateformat: dd-MM-yyyy HH:mm:ss.SSS, Europe/Minsk
-    rolling-file-name: ${LOGS_DIRECTORY:logs}/archived/user-crud.%d{dd-MM-yyyy}.%i.log
+  logback:
+    rollingpolicy:
+      max-history: 30
+      max-file-size: 10MB
+      file-name-pattern: ${LOGS_DIRECTORY:logs}/archived/user-crud.%d{dd-MM-yyyy}.%i.log

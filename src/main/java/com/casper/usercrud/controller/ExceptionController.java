@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class ExceptionController {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> handleIllegalArgumentException() {
-        log.info("API error {}", IllegalArgumentException.class);
-        return ResponseEntity.badRequest().build();
-    }
+  @ExceptionHandler(IllegalArgumentException.class)
+  public ResponseEntity<Object> handleIllegalArgumentException() {
+    log.info("API error {}", IllegalArgumentException.class);
+    return ResponseEntity.badRequest().build();
+  }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleInternalException(Exception exception) {
-        log.error("Internal server error", exception);
-        return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
-    }
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<Object> handleInternalException(Exception exception) {
+    log.error("Internal server error", exception);
+    return ResponseEntity.status(INTERNAL_SERVER_ERROR).build();
+  }
 
 }

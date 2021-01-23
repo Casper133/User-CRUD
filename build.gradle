@@ -1,7 +1,7 @@
 plugins {
     id "java"
-    id "org.springframework.boot" version "${springBootVersion}"
-    id "io.spring.dependency-management" version "${springDependencyManagementVersion}"
+    id "org.springframework.boot" version "$springBootVersion"
+    id "io.spring.dependency-management" version "$springDependencyManagementVersion"
 }
 
 repositories {
@@ -9,25 +9,22 @@ repositories {
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    implementation "io.springfox:springfox-boot-starter:$swaggerVersion"
 
-    implementation "org.postgresql:postgresql:${postgresqlDriverVersion}"
-    implementation "org.flywaydb:flyway-core:${flywayVersion}"
+    implementation "org.postgresql:postgresql:$postgresqlDriverVersion"
+    implementation "org.flywaydb:flyway-core:$flywayVersion"
 
-    compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    compileOnly "org.mapstruct:mapstruct:$mapstructVersion"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
 
-    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
 }
 
 tasks.withType(JavaCompile) {
     def javaVersion = JavaVersion.VERSION_11.toString()
     setSourceCompatibility javaVersion
     setTargetCompatibility javaVersion
-}
-
-bootJar {
-    archiveFileName = "user-crud.jar"
 }

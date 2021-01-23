@@ -5,12 +5,12 @@ import com.casper.usercrud.dto.UserResponseDto;
 
 public interface UserService {
 
-    UserResponseDto createUser(UserRequestDto userRequestDto);
+  UserResponseDto createUser(UserRequestDto userRequestDto);
 
-    UserResponseDto getUser(Long id);
+  UserResponseDto getUser(Long id);
 
-    UserResponseDto editUser(Long id, UserRequestDto userRequestDto);
+  UserResponseDto editUser(Long id, UserRequestDto userRequestDto);
 
-    void deleteUser(Long id);
+  void deleteUser(Long id);
 
 }

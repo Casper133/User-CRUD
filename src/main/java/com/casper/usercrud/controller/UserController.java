@@ -21,32 +21,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UserController {
 
-    private final UserService userService;
+  private final UserService userService;
 
-    @PostMapping("/user")
-    public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
-        UserResponseDto userResponseDto = userService.createUser(userRequestDto);
-        return ResponseEntity.ok(userResponseDto);
-    }
+  @PostMapping("/user")
+  public ResponseEntity<UserResponseDto> createUser(@RequestBody UserRequestDto userRequestDto) {
+    UserResponseDto userResponseDto = userService.createUser(userRequestDto);
+    return ResponseEntity.ok(userResponseDto);
+  }
 
-    @GetMapping("/user")
-    public ResponseEntity<UserResponseDto> getUser(@RequestParam("id") Long id) {
-        UserResponseDto userResponseDto = userService.getUser(id);
-        return ResponseEntity.ok(userResponseDto);
-    }
+  @GetMapping("/user")
+  public ResponseEntity<UserResponseDto> getUser(@RequestParam("id") Long id) {
+    UserResponseDto userResponseDto = userService.getUser(id);
+    return ResponseEntity.ok(userResponseDto);
+  }
 
-    @PutMapping("/user/{id}")
-    public ResponseEntity<UserResponseDto> editUser(@PathVariable("id") Long id,
-                                                    @RequestBody UserRequestDto userRequestDto) {
+  @PutMapping("/user/{id}")
+  public ResponseEntity<UserResponseDto> editUser(@PathVariable("id") Long id,
+      @RequestBody UserRequestDto userRequestDto) {
 
-        UserResponseDto userResponseDto = userService.editUser(id, userRequestDto);
-        return ResponseEntity.ok(userResponseDto);
-    }
+    UserResponseDto userResponseDto = userService.editUser(id, userRequestDto);
+    return ResponseEntity.ok(userResponseDto);
+  }
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok().build();
-    }
+  @DeleteMapping("/user/{id}")
+  public ResponseEntity<Object> deleteUser(@PathVariable("id") Long id) {
+    userService.deleteUser(id);
+    return ResponseEntity.ok().build();
+  }
 
 }
